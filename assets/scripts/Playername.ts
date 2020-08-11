@@ -46,7 +46,7 @@ export default class NewClass extends cc.Component {
     if (playername.match(regex)) {
       // console.log("go second sence");
       localStorage.setItem("playername", playername);
-      cc.director.loadScene("ShootFootball");
+      cc.director.loadScene("Game");
       // console.log("playname: " + localStorage.getItem("playername"));
     } else {
       // console.log("show alert not match eng and numberic");

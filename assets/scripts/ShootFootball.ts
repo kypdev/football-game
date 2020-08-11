@@ -9,8 +9,12 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
+  // * Playername Label
   @property(cc.Label)
   playernameLabel: cc.Label;
+  // * Score Label
+  @property(cc.Label)
+  scoreLabel: cc.Label
 
   // LIFE-CYCLE CALLBACKS:
 

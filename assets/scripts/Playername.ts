@@ -9,17 +9,26 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
+  // * Playername Label
   @property(cc.Node)
   editBoxPlayername: cc.Node;
-
+  // * Save Playername Button
   @property(cc.Node)
   savePlayernameBtn: cc.Node;
+  // * Alert Node
+  @property(cc.Node)
+  alertPlayername: cc.Node;
+  // * OK Button Alert Validate Playername
+  @property(cc.Node)
+  okBtnAlert: cc.Node;
 
   // LIFE-CYCLE CALLBACKS:
 
-  // onLoad () {}
+  onLoad() {
+    this.alertPlayername.active = false;
+  }
 
-  start() {}
+  // start() {}
 
   // update (dt) {}
 
@@ -35,12 +44,17 @@ export default class NewClass extends cc.Component {
     const regex = /^[a-zA-Z0-9]+$/;
 
     if (playername.match(regex)) {
-      console.log("go second sence");
+      // console.log("go second sence");
       localStorage.setItem("playername", playername);
       cc.director.loadScene("ShootFootball");
-      console.log("playname: " + localStorage.getItem("playername"));
+      // console.log("playname: " + localStorage.getItem("playername"));
     } else {
-      console.log("show alert not match eng and numberic");
+      // console.log("show alert not match eng and numberic");
+      this.alertPlayername.active = true;
     }
+  }
+
+  onClickOKAlertBtn() {
+    this.alertPlayername.active = false;
   }
 }

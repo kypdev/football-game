@@ -15,6 +15,10 @@ export default class NewClass extends cc.Component {
   // * Score Label
   @property(cc.Label)
   scoreLabel: cc.Label
+  // * Shoot Mid Button
+  @property(cc.Node)
+  shootMidBtn: cc.Node
+
 
   // LIFE-CYCLE CALLBACKS:
 
@@ -26,4 +30,21 @@ export default class NewClass extends cc.Component {
   start() {}
 
   // update (dt) {}
+
+  onClickShootMid() {
+    try {
+      console.log('play animation');
+
+
+      var anim = this.getComponent(cc.Animation)
+      anim.play('../animation/mid/Mid1.anim')
+
+      
+
+
+    } catch (error) {
+      console.error(error);
+      
+    }
+  }
 }

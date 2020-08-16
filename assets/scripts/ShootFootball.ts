@@ -252,7 +252,20 @@ export default class NewClass extends cc.Component {
     this.ball.active = false;
   }
 
-  onClickPlayAgain() {}
+  onClickPlayAgain() {
+    this.setFirstBallPosition()
+    this.playResult.active = false
+    this.ball.active = true
+    this.left.active = true
+    this.right.active = true
+    this.mid.active = true
+    this.score = 0
+    this.scoreLabel.string = 'คะแนน: 0'
+    this.shoot.active = true
+    this.round = 0
+
+
+  }
 
   onClickExit() {
     cc.director.loadScene('Playername')

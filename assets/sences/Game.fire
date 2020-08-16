@@ -105,10 +105,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 74
+        "__id__": 75
       },
       {
-        "__id__": 75
+        "__id__": 76
       }
     ],
     "_prefab": null,
@@ -1189,7 +1189,7 @@
       "__id__": 59
     },
     "exitButton": {
-      "__id__": 66
+      "__id__": 67
     },
     "_id": "66XnWpIrJC3IwnUGAXJKcU"
   },
@@ -2495,7 +2495,7 @@
         "__id__": 59
       },
       {
-        "__id__": 66
+        "__id__": 67
       }
     ],
     "_active": false,
@@ -3165,7 +3165,11 @@
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 66
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 2,
@@ -3236,6 +3240,16 @@
     "_id": "fbGYOiL/hCjoja+AlTqt1+"
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 22
+    },
+    "component": "",
+    "_componentId": "bda58f0yDBO0Ia8sytc5eZK",
+    "handler": "onClickPlayAgain",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.Node",
     "_name": "ExitButton",
     "_objFlags": 0,
@@ -3244,13 +3258,13 @@
     },
     "_children": [
       {
-        "__id__": 67
+        "__id__": 68
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 72
+        "__id__": 73
       }
     ],
     "_prefab": null,
@@ -3306,20 +3320,20 @@
     "_name": "Background",
     "_objFlags": 512,
     "_parent": {
-      "__id__": 66
+      "__id__": 67
     },
     "_children": [
       {
-        "__id__": 68
+        "__id__": 69
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 70
+        "__id__": 71
       },
       {
-        "__id__": 71
+        "__id__": 72
       }
     ],
     "_prefab": null,
@@ -3375,13 +3389,13 @@
     "_name": "Label",
     "_objFlags": 512,
     "_parent": {
-      "__id__": 67
+      "__id__": 68
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 69
+        "__id__": 70
       }
     ],
     "_prefab": null,
@@ -3437,7 +3451,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 68
+      "__id__": 69
     },
     "_enabled": true,
     "_materials": [
@@ -3469,7 +3483,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 67
+      "__id__": 68
     },
     "_enabled": true,
     "_materials": [
@@ -3501,7 +3515,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 67
+      "__id__": 68
     },
     "_enabled": true,
     "alignMode": 0,
@@ -3528,7 +3542,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 66
+      "__id__": 67
     },
     "_enabled": true,
     "_normalMaterial": null,
@@ -3537,7 +3551,7 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 73
+        "__id__": 74
       }
     ],
     "_N$interactable": true,
@@ -3605,7 +3619,7 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 67
+      "__id__": 68
     },
     "_id": "58oVrCYhVNm6QOkhoF8UlM"
   },

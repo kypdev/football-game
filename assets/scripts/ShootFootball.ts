@@ -35,6 +35,12 @@ export default class NewClass extends cc.Component {
   // * Result Score
   @property(cc.Label)
   resultScore: cc.Label;
+  // * Play Again Button
+  @property(cc.Node)
+  playagainButton: cc.Node;
+  // * Exit Button
+  @property(cc.Node)
+  exitButton: cc.Node;
 
   firstBallPositionX: number;
   firstBallPositionY: number;
@@ -201,10 +207,7 @@ export default class NewClass extends cc.Component {
         console.log("X: " + x + ", Y: " + y);
 
         
-        this.updateScore();
-        
         this.round++;
-        console.log("Score: " + this.score + ", Round: " + this.round);
         
         if (this.round > 4) {
           this.hideNodeFinalRound();
@@ -216,15 +219,18 @@ export default class NewClass extends cc.Component {
           this.checkBallInOut();
           setTimeout(() => {
             console.log("show ball");
+            this.updateScore();
             this.ball.active = true;
+            // this.scoreLabel
           }, 4000);
         }
+        console.log("Score: " + this.score + ", Round: " + this.round);
       })
       .start();
   }
 
   showResultPlay() {
-    this.scoreLabel.string = this.score + " ประตู";
+    this.resultScore.string = this.score + " ประตู";
 
     this.playResult.active = true;
   }
@@ -244,5 +250,11 @@ export default class NewClass extends cc.Component {
     this.shoot.active = false;
     this.left.active = false;
     this.ball.active = false;
+  }
+
+  onClickPlayAgain() {}
+
+  onClickExit() {
+    cc.director.loadScene('Playername')
   }
 }

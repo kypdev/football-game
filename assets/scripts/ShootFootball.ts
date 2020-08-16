@@ -1,10 +1,3 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -36,6 +29,12 @@ export default class NewClass extends cc.Component {
   // * Alert Ball Out
   @property(cc.Node)
   alertBallOut: cc.Node;
+  // * Alert 5 Rounds
+  @property(cc.Node)
+  playResult: cc.Node;
+  // * Result Score
+  @property(cc.Label)
+  resultScore: cc.Label;
 
   firstBallPositionX: number;
   firstBallPositionY: number;
@@ -49,7 +48,7 @@ export default class NewClass extends cc.Component {
 
   onLoad() {
     let playername = localStorage.getItem("playername");
-    this.playernameLabel.string = 'Playername: ' + playername;
+    this.playernameLabel.string = "Playername: " + playername;
   }
 
   start() {
@@ -105,12 +104,51 @@ export default class NewClass extends cc.Component {
     ) {
       console.log("Ball IN");
       this.score++;
-      this.alertBallIn.active = true;
+      setTimeout(() => {
+        console.log("hide ball");
+        this.ball.active = false;
+
+        this.setFirstBallPosition();
+      }, 1000);
+
+      setTimeout(() => {
+        this.alertBallIn.active = true;
+      }, 2000);
+
+      setTimeout(() => {
+        this.alertBallIn.active = false;
+      }, 3000);
+
+      // setTimeout(() => {
+      //   console.log("show ball");
+      //   this.ball.active = true;
+      // }, 4000);
     } else {
       console.log("Ball OUT");
-      this.alertBallOut.active = true;
+
+      setTimeout(() => {
+        console.log("hide ball");
+        this.ball.active = false;
+
+        this.setFirstBallPosition();
+      }, 500);
+
+      setTimeout(() => {
+        this.alertBallOut.active = true;
+      }, 1000);
+
+      setTimeout(() => {
+        this.alertBallOut.active = false;
+      }, 2000);
+
+      // setTimeout(() => {
+      //   console.log("show ball");
+      //   this.ball.active = true;
+      // }, 3000);
     }
   }
+
+  showShootResultAlert() {}
 
   onClickConfirmShoot() {
     try {
@@ -120,7 +158,10 @@ export default class NewClass extends cc.Component {
         console.log(" You haven' t choose ball direction shoot yet !!");
 
         console.log("ballDirec: " + this.ballDirection);
-      } else this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
+      } else {
+        this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
+        // this.ballTweenAction(this.ballDirectionX, this.ballDirectionY).
+      }
     } catch (error) {
       console.error("shoot: " + error);
     }
@@ -129,11 +170,11 @@ export default class NewClass extends cc.Component {
   randomLeftBallDirection() {
     // let xMin = 335;
     // let XMax = -1;
-    // let yMin = 67;
+    // let yMin = 237;
     // let yMax = 555;
 
     let xRan = Math.floor(Math.random() * 335 + -1);
-    let yRan = Math.floor(Math.random() * 488 + 67);
+    let yRan = Math.floor(Math.random() * 318 + 237);
 
     console.log("xRan: " + xRan);
     console.log("yRan: " + yRan);
@@ -159,19 +200,49 @@ export default class NewClass extends cc.Component {
 
         console.log("X: " + x + ", Y: " + y);
 
-        this.checkBallInOut();
-
+        
         this.updateScore();
-
+        
         this.round++;
         console.log("Score: " + this.score + ", Round: " + this.round);
-
-        if (this.round == 5) {
-          console.log("play 5 rounds show score !!");
+        
+        if (this.round > 4) {
+          this.hideNodeFinalRound();
+          setTimeout(() => {
+            console.log("play 5 rounds show score !!");
+            this.showResultPlay();
+          }, 1000);
+        } else if (this.round >= 0 && this.round < 5) {
+          this.checkBallInOut();
+          setTimeout(() => {
+            console.log("show ball");
+            this.ball.active = true;
+          }, 4000);
         }
-
-        // this.setFirstBallPosition();
       })
       .start();
+  }
+
+  showResultPlay() {
+    this.scoreLabel.string = this.score + " ประตู";
+
+    this.playResult.active = true;
+  }
+
+  delayShow() {
+    console.log("delay");
+
+    setTimeout(() => {
+      console.log("delay show");
+    }, 5000);
+  }
+
+  hideNodeFinalRound() {
+    this.left.active = false;
+    this.right.active = false;
+    this.mid.active = false;
+    this.shoot.active = false;
+    this.left.active = false;
+    this.ball.active = false;
   }
 }

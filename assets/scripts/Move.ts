@@ -5,22 +5,16 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
+  // LIFE-CYCLE CALLBACKS:
 
-    
+  // onLoad () {}
 
-    // LIFE-CYCLE CALLBACKS:
+  start() {}
 
-    // onLoad () {}
-
-    start () {
-
-    }
-
-    update (dt) {
-        this.node.setPositionX
-    }
+  // update (dt) {}
+  
 }

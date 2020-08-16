@@ -37,9 +37,13 @@ export default class NewClass extends cc.Component {
   @property(cc.Node)
   alertBallOut: cc.Node;
 
+  firstBallPositionX: number;
+  firstBallPositionY: number;
   ballDirection: number;
   ballDirectionX: number;
   ballDirectionY: number;
+  score: number;
+  round: number;
 
   // LIFE-CYCLE CALLBACKS:
 
@@ -49,15 +53,22 @@ export default class NewClass extends cc.Component {
   }
 
   start() {
-    this.ball.setPosition(479.657, 41.469);
+    this.firstBallPositionX = 479;
+    this.firstBallPositionY = 41;
+    this.ball.setPosition(this.firstBallPositionX, this.firstBallPositionY);
+    this.ballDirectionX = this.firstBallPositionX;
+    this.ballDirectionY = this.firstBallPositionY;
+    this.score = 0;
+    this.round = 0;
+    this.ballDirection = null
   }
 
   setFirstBallPosition() {
-    this.ball.setPosition(479.657, 41.469);
+    this.ball.setPosition(this.firstBallPositionX, this.firstBallPositionY);
     this.ball.setRotation(0);
     this.ball.setScale(1);
-    this.alertBallIn.active = false
-    this.alertBallOut.active = false
+    this.alertBallIn.active = false;
+    this.alertBallOut.active = false;
   }
 
   // update (dt) {}
@@ -93,6 +104,7 @@ export default class NewClass extends cc.Component {
       this.ballDirectionY >= 234
     ) {
       console.log("Ball IN");
+      this.score++;
       this.alertBallIn.active = true;
     } else {
       console.log("Ball OUT");
@@ -103,9 +115,13 @@ export default class NewClass extends cc.Component {
   onClickConfirmShoot() {
     try {
       console.log("confirm shoot");
-      console.log("ballDirec: " + this.ballDirection);
-
-      this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
+      
+      if(this.ballDirection == null){
+        console.log(' You haven\' t choose ball direction shoot yet !!');
+        
+        console.log("ballDirec: " + this.ballDirection);
+      }else
+        this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
     } catch (error) {
       console.error("shoot: " + error);
     }
@@ -141,6 +157,12 @@ export default class NewClass extends cc.Component {
         console.log("X: " + x + ", Y: " + y);
 
         this.checkBallInOut();
+        this.round++;
+        console.log("Score: " + this.score + ", Round: " + this.round);
+
+        if (this.round == 5) {
+          console.log("play 5 rounds show score !!");
+        }
 
         // this.setFirstBallPosition();
       })

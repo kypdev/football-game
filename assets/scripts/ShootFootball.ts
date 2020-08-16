@@ -30,6 +30,12 @@ export default class NewClass extends cc.Component {
   // * Right Button
   @property(cc.Node)
   right: cc.Node;
+  // * Alert Ball In
+  @property(cc.Node)
+  alertBallIn: cc.Node;
+  // * Alert Ball Out
+  @property(cc.Node)
+  alertBallOut: cc.Node;
 
   ballDirection: number;
   ballDirectionX: number;
@@ -50,6 +56,8 @@ export default class NewClass extends cc.Component {
     this.ball.setPosition(479.657, 41.469);
     this.ball.setRotation(0);
     this.ball.setScale(1);
+    this.alertBallIn.active = false
+    this.alertBallOut.active = false
   }
 
   // update (dt) {}
@@ -85,8 +93,10 @@ export default class NewClass extends cc.Component {
       this.ballDirectionY >= 234
     ) {
       console.log("Ball IN");
+      this.alertBallIn.active = true;
     } else {
       console.log("Ball OUT");
+      this.alertBallOut.active = true;
     }
   }
 
@@ -94,9 +104,8 @@ export default class NewClass extends cc.Component {
     try {
       console.log("confirm shoot");
       console.log("ballDirec: " + this.ballDirection);
-      
-      this.ballTweenAction(this.ballDirectionX, this.ballDirectionY)
-      
+
+      this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
     } catch (error) {
       console.error("shoot: " + error);
     }
@@ -125,13 +134,13 @@ export default class NewClass extends cc.Component {
       .call(() => {
         console.log(" finished animation");
         console.log("show result IN OUT\n#########################");
-        
+
         let x = this.ball.position.x.toFixed(3);
         let y = this.ball.position.y.toFixed(3);
 
         console.log("X: " + x + ", Y: " + y);
 
-        this.checkBallInOut(); 
+        this.checkBallInOut();
 
         // this.setFirstBallPosition();
       })

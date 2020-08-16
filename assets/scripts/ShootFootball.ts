@@ -14,11 +14,24 @@ export default class NewClass extends cc.Component {
   playernameLabel: cc.Label;
   // * Score Label
   @property(cc.Label)
-  scoreLabel: cc.Label
-  // * Shoot Mid Button
+  scoreLabel: cc.Label;
+  // * Ball Node
   @property(cc.Node)
-  shootMidBtn: cc.Node
+  ball: cc.Node;
+  // * Confirm Button
+  @property(cc.Node)
+  shoot: cc.Node;
+  // * Left Button
+  @property(cc.Node)
+  left: cc.Node;
+  // * Mid Button
+  @property(cc.Node)
+  mid: cc.Node;
+  // * Right Button
+  @property(cc.Node)
+  right: cc.Node;
 
+  ballDirection: number;
 
   // LIFE-CYCLE CALLBACKS:
 
@@ -27,24 +40,33 @@ export default class NewClass extends cc.Component {
     this.playernameLabel.string = playername;
   }
 
-  start() {}
+  start() {
+    this.ball.setPosition(479.657, 41.469);
+  }
 
   // update (dt) {}
 
-  onClickShootMid() {
+  onClickSelectLeft(e: any, d: number) {
+    console.log("Left: " + d);
+    this.ballDirection = d;
+  }
+
+  onClickSelectMid(e: any, d: number) {
+    console.log("Mid: " + d);
+    this.ballDirection = d;
+  }
+
+  onClickSelectRight(e: any, d: number) {
+    console.log("Right: " + d);
+    this.ballDirection = d;
+  }
+
+  onClickConfirmShoot() {
     try {
-      console.log('play animation');
-
-
-      var anim = this.getComponent(cc.Animation)
-      anim.play('../animation/mid/Mid1.anim')
-
-      
-
-
+      console.log("confirm shoot");
+      console.log("ballDirec: " + this.ballDirection);
     } catch (error) {
-      console.error(error);
-      
+      console.error("shoot: " + error);
     }
   }
 }

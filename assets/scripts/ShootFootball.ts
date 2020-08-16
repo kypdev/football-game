@@ -75,7 +75,7 @@ export default class NewClass extends cc.Component {
     // Ball In
     //  xLeft > 101
     //  xRight < 851
-    //  yLeft < 741
+    //  yTop < 741
     //  yBottom > 234
 
     if (
@@ -95,8 +95,8 @@ export default class NewClass extends cc.Component {
       console.log("confirm shoot");
       console.log("ballDirec: " + this.ballDirection);
       
-      this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
-      this.checkBallInOut() 
+      this.ballTweenAction(this.ballDirectionX, this.ballDirectionY)
+      
     } catch (error) {
       console.error("shoot: " + error);
     }
@@ -125,13 +125,15 @@ export default class NewClass extends cc.Component {
       .call(() => {
         console.log(" finished animation");
         console.log("show result IN OUT\n#########################");
-        // this.onRestore()
+        
         let x = this.ball.position.x.toFixed(3);
         let y = this.ball.position.y.toFixed(3);
 
         console.log("X: " + x + ", Y: " + y);
 
-        this.setFirstBallPosition();
+        this.checkBallInOut(); 
+
+        // this.setFirstBallPosition();
       })
       .start();
   }

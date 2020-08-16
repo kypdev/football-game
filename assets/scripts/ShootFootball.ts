@@ -41,6 +41,20 @@ export default class NewClass extends cc.Component {
   // * Exit Button
   @property(cc.Node)
   exitButton: cc.Node;
+  // * Arrow Off
+  @property(cc.Node)
+  leftArrowOff: cc.Node;
+  @property(cc.Node)
+  midArrowOff: cc.Node;
+  @property(cc.Node)
+  rightArrowOff: cc.Node;
+
+  @property(cc.Node)
+  clickdd: cc.Node;
+  @property(cc.Node)
+  arrowOFF: cc.Node;
+  @property(cc.Node)
+  arrowOn: cc.Node;
 
   firstBallPositionX: number;
   firstBallPositionY: number;
@@ -81,6 +95,9 @@ export default class NewClass extends cc.Component {
   onClickSelectLeft(e: any, d: number) {
     console.log("Left: " + d);
     this.ballDirection = d;
+    this.left.active = true;
+    this.mid.active = false;
+    this.right.active = false;
 
     this.randomLeftBallDirection();
   }
@@ -89,14 +106,22 @@ export default class NewClass extends cc.Component {
     console.log("Mid: " + d);
     this.ballDirection = d;
 
-    this.randomMiddleBallDirection()
+    this.left.active = false;
+    this.mid.active = true;
+    this.right.active = false;
+
+    this.randomMiddleBallDirection();
   }
 
   onClickSelectRight(e: any, d: number) {
     console.log("Right: " + d);
     this.ballDirection = d;
 
-    this.randomRightBallDirection()
+    this.left.active = false;
+    this.mid.active = false;
+    this.right.active = true;
+
+    this.randomRightBallDirection();
   }
 
   checkBallInOut() {
@@ -305,5 +330,11 @@ export default class NewClass extends cc.Component {
 
   onClickExit() {
     cc.director.loadScene("Playername");
+  }
+
+  click() {
+    console.log("CLICK");
+    this.arrowOn.opacity = 50;
+    // this.clickdd.
   }
 }

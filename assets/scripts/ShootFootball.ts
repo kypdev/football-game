@@ -88,11 +88,15 @@ export default class NewClass extends cc.Component {
   onClickSelectMid(e: any, d: number) {
     console.log("Mid: " + d);
     this.ballDirection = d;
+
+    this.randomMiddleBallDirection()
   }
 
   onClickSelectRight(e: any, d: number) {
     console.log("Right: " + d);
     this.ballDirection = d;
+
+    this.randomRightBallDirection()
   }
 
   checkBallInOut() {
@@ -173,6 +177,7 @@ export default class NewClass extends cc.Component {
     }
   }
 
+  // * Random Left
   randomLeftBallDirection() {
     // let xMin = 335;
     // let XMax = -1;
@@ -189,14 +194,48 @@ export default class NewClass extends cc.Component {
     this.ballDirectionY = yRan;
   }
 
+  // * Random Middle
+  randomMiddleBallDirection() {
+    // let xLeft = 335;
+    // let XRight = 623;
+    // let yBottom = 237;
+    // let yTop = 555;
+
+    let xRan = Math.floor(Math.random() * 288 + 335);
+    let yRan = Math.floor(Math.random() * 318 + 237);
+
+    console.log("xRan: " + xRan);
+    console.log("yRan: " + yRan);
+
+    this.ballDirectionX = xRan;
+    this.ballDirectionY = yRan;
+  }
+
+  // * Random Right
+  randomRightBallDirection() {
+    // let xLeft = 623;
+    // let XRight = 926;
+    // let yBottom = 237;
+    // let yTop = 555;
+
+    let xRan = Math.floor(Math.random() * 303 + 623);
+    let yRan = Math.floor(Math.random() * 318 + 237);
+
+    console.log("xRan: " + xRan);
+    console.log("yRan: " + yRan);
+
+    this.ballDirectionX = xRan;
+    this.ballDirectionY = yRan;
+  }
+
   updateScore() {
     this.scoreLabel.string = "คะแนน: " + this.score;
   }
 
   ballTweenAction(x: number, y: number) {
     cc.tween(this.ball)
-      .to(1, { position: cc.v2(x, y), rotation: 1500 })
-      .to(1, { scale: 1 })
+      .to(0.5, { position: cc.v2(x, y), rotation: 1500 })
+      .to(0.5, { scale: 1 })
       .call(() => {
         console.log(" finished animation");
         console.log("show result IN OUT\n#########################");
@@ -206,9 +245,8 @@ export default class NewClass extends cc.Component {
 
         console.log("X: " + x + ", Y: " + y);
 
-        
         this.round++;
-        
+
         if (this.round > 4) {
           this.hideNodeFinalRound();
           setTimeout(() => {
@@ -253,21 +291,19 @@ export default class NewClass extends cc.Component {
   }
 
   onClickPlayAgain() {
-    this.setFirstBallPosition()
-    this.playResult.active = false
-    this.ball.active = true
-    this.left.active = true
-    this.right.active = true
-    this.mid.active = true
-    this.score = 0
-    this.scoreLabel.string = 'คะแนน: 0'
-    this.shoot.active = true
-    this.round = 0
-
-
+    this.setFirstBallPosition();
+    this.playResult.active = false;
+    this.ball.active = true;
+    this.left.active = true;
+    this.right.active = true;
+    this.mid.active = true;
+    this.score = 0;
+    this.scoreLabel.string = "คะแนน: 0";
+    this.shoot.active = true;
+    this.round = 0;
   }
 
   onClickExit() {
-    cc.director.loadScene('Playername')
+    cc.director.loadScene("Playername");
   }
 }

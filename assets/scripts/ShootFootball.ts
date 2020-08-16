@@ -49,7 +49,7 @@ export default class NewClass extends cc.Component {
 
   onLoad() {
     let playername = localStorage.getItem("playername");
-    this.playernameLabel.string = playername;
+    this.playernameLabel.string = 'Playername: ' + playername;
   }
 
   start() {
@@ -60,7 +60,7 @@ export default class NewClass extends cc.Component {
     this.ballDirectionY = this.firstBallPositionY;
     this.score = 0;
     this.round = 0;
-    this.ballDirection = null
+    this.ballDirection = null;
   }
 
   setFirstBallPosition() {
@@ -115,13 +115,12 @@ export default class NewClass extends cc.Component {
   onClickConfirmShoot() {
     try {
       console.log("confirm shoot");
-      
-      if(this.ballDirection == null){
-        console.log(' You haven\' t choose ball direction shoot yet !!');
-        
+
+      if (this.ballDirection == null) {
+        console.log(" You haven' t choose ball direction shoot yet !!");
+
         console.log("ballDirec: " + this.ballDirection);
-      }else
-        this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
+      } else this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
     } catch (error) {
       console.error("shoot: " + error);
     }
@@ -143,6 +142,10 @@ export default class NewClass extends cc.Component {
     this.ballDirectionY = yRan;
   }
 
+  updateScore() {
+    this.scoreLabel.string = "คะแนน: " + this.score;
+  }
+
   ballTweenAction(x: number, y: number) {
     cc.tween(this.ball)
       .to(1, { position: cc.v2(x, y), rotation: 1500 })
@@ -157,6 +160,9 @@ export default class NewClass extends cc.Component {
         console.log("X: " + x + ", Y: " + y);
 
         this.checkBallInOut();
+
+        this.updateScore();
+
         this.round++;
         console.log("Score: " + this.score + ", Round: " + this.round);
 

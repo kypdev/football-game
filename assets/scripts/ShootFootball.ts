@@ -42,6 +42,12 @@ export default class NewClass extends cc.Component {
   @property(cc.Node)
   exitButton: cc.Node;
 
+  // * Ball Direction Alert
+  @property(cc.Node)
+  ballDirectionAlert: cc.Node;
+  @property(cc.Button)
+  okBallDirection: cc.Button;
+
   firstBallPositionX: number;
   firstBallPositionY: number;
   ballDirection: number;
@@ -76,7 +82,7 @@ export default class NewClass extends cc.Component {
     this.alertBallOut.active = false;
   }
 
-  // update (dt) {}
+  // update(dt) {}
 
   onClickSelectLeft(e: any, d: number) {
     console.log("Left: " + d);
@@ -198,8 +204,6 @@ export default class NewClass extends cc.Component {
     // }
   }
 
-  showShootResultAlert() {}
-
   onDisableShoot() {
     this.left.interactable = false;
     this.mid.interactable = false;
@@ -219,13 +223,12 @@ export default class NewClass extends cc.Component {
     try {
       console.log("confirm shoot");
 
-      this.onDisableShoot();
-
       if (this.ballDirection == null) {
         console.log(" You haven' t choose ball direction shoot yet !!");
-
+        this.ballDirectionAlert.active = true;
         console.log("ballDirec: " + this.ballDirection);
       } else {
+        this.onDisableShoot();
         this.ballTweenAction(this.ballDirectionX, this.ballDirectionY);
       }
     } catch (error) {
@@ -352,6 +355,7 @@ export default class NewClass extends cc.Component {
     this.score = 0;
     this.scoreLabel.string = "Score : 0";
     this.round = 0;
+    this.ballDirection = null;
   }
 
   onClickExit() {
@@ -362,5 +366,9 @@ export default class NewClass extends cc.Component {
   click() {
     console.log("CLICK");
     // this.clickdd.
+  }
+
+  okBallDirectionAlert() {
+    this.ballDirectionAlert.active = false;
   }
 }

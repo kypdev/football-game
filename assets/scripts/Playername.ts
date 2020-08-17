@@ -22,6 +22,9 @@ export default class NewClass extends cc.Component {
   @property(cc.Node)
   okBtnAlert: cc.Node;
 
+  @property(cc.Button)
+  btn: cc.Button;
+
   // LIFE-CYCLE CALLBACKS:
 
   onLoad() {
@@ -33,7 +36,7 @@ export default class NewClass extends cc.Component {
   // update (dt) {}
 
   onClickSavePlayername() {
-    // console.log('save playername');
+    console.log("save playername");
 
     let playername = this.editBoxPlayername
       .getChildByName("playername")
@@ -56,5 +59,14 @@ export default class NewClass extends cc.Component {
 
   onClickOKAlertBtn() {
     this.alertPlayername.active = false;
+  }
+
+  onTextChange(data: string) {
+  
+      if(data.length == 0){
+        console.log('no data');
+        
+      }
+  
   }
 }

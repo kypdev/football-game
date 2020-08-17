@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        526.5434455009387,
+        527.4094709047232,
         0,
         0,
         0,
@@ -787,7 +787,7 @@
     "_useOriginalSize": false,
     "_string": "",
     "returnType": 0,
-    "maxLength": 8,
+    "maxLength": 16,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -898,9 +898,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 230,
+      "g": 230,
+      "b": 230,
       "a": 255
     },
     "_contentSize": {
@@ -1103,7 +1103,9 @@
       "__id__": 18
     },
     "_enabled": true,
-    "_normalMaterial": null,
+    "_normalMaterial": {
+      "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+    },
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
@@ -1114,8 +1116,8 @@
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 1,
+    "transition": 1,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -1273,6 +1275,7 @@
     "okBtnAlert": {
       "__id__": 34
     },
+    "btn": null,
     "_id": "35IOveifFHeJJctr1LYlom"
   },
   {

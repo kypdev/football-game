@@ -48,6 +48,13 @@ export default class NewClass extends cc.Component {
   @property(cc.Button)
   okBallDirection: cc.Button;
 
+  @property(cc.Node)
+  leftSelected: cc.Node;
+  @property(cc.Node)
+  middleSelected: cc.Node;
+  @property(cc.Node)
+  rightSelected: cc.Node;
+
   firstBallPositionX: number;
   firstBallPositionY: number;
   ballDirection: number;
@@ -67,8 +74,8 @@ export default class NewClass extends cc.Component {
     this.firstBallPositionX = 0;
     this.firstBallPositionY = -278;
     this.ball.setPosition(this.firstBallPositionX, this.firstBallPositionY);
-    this.ballDirectionX = this.firstBallPositionX;
-    this.ballDirectionY = this.firstBallPositionY;
+    this.ballDirectionX = null
+    this.ballDirectionY = null
     this.score = 0;
     this.round = 0;
     this.ballDirection = null;
@@ -88,7 +95,9 @@ export default class NewClass extends cc.Component {
     console.log("Left: " + d);
     this.ballDirection = d;
 
-    // this.left.hoverSprite.on
+    this.leftSelected.active = true
+    this.middleSelected.active = false
+    this.rightSelected.active = false
 
     this.randomLeftBallDirection();
   }
@@ -96,12 +105,18 @@ export default class NewClass extends cc.Component {
   onClickSelectMid(e: any, d: number) {
     console.log("Mid: " + d);
     this.ballDirection = d;
+    this.leftSelected.active = false
+    this.middleSelected.active = true
+    this.rightSelected.active = false;
     this.randomMiddleBallDirection();
   }
 
   onClickSelectRight(e: any, d: number) {
     console.log("Right: " + d);
     this.ballDirection = d;
+    this.leftSelected.active = false
+    this.middleSelected.active = false;
+    this.rightSelected.active = true
     this.randomRightBallDirection();
   }
 
@@ -209,6 +224,10 @@ export default class NewClass extends cc.Component {
     this.mid.interactable = false;
     this.right.interactable = false;
     this.shoot.interactable = false;
+    this.ballDirection = null;
+    this.leftSelected.active = false
+    this.middleSelected.active = false
+    this.rightSelected.active = false
   }
 
   onEnableShoot() {
@@ -217,6 +236,10 @@ export default class NewClass extends cc.Component {
     this.right.interactable = true;
     this.shoot.interactable = true;
     this.ball.active = true;
+    this.ballDirection = null
+    this.ballDirectionX = null
+    this.ballDirectionY = null
+    
   }
 
   onClickConfirmShoot() {
@@ -328,7 +351,7 @@ export default class NewClass extends cc.Component {
   }
 
   showResultPlay() {
-    this.resultScore.string = this.score + " ประตู";
+    this.resultScore.string = 'Your score is ' + this.score;
 
     this.playResult.active = true;
   }
